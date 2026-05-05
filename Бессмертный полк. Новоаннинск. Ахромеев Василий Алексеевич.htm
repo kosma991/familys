@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ахромеев Василий Алексеевич — Бессмертный полк</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px auto;
+            max-width: 960px;
+            padding: 0 20px;
+            background: #f5f5f5;
+            color: #222;
+            line-height: 1.6;
+        }
+        .veteran-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 30px;
+            background: #f0f0f0;
+            align-items: center;
+        }
+        .photo-large {
+            width: 260px;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            background: #ddd;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .photo-large:hover {
+            transform: scale(1.02);
+        }
+        .info {
+            flex: 1;
+        }
+        .name {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin: 0 0 8px 0;
+        }
+        .rank, .years {
+            font-size: 1.2em;
+            color: #555;
+            margin-top: 4px;
+        }
+        .section {
+            padding: 25px 30px;
+            border-top: 1px solid #eee;
+        }
+        .section h2 {
+            margin: 0 0 15px 0;
+            font-size: 1.5em;
+            color: #b22222;
+            border-bottom: 2px solid #b22222;
+            padding-bottom: 4px;
+        }
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 230px 1fr;
+            gap: 10px 16px;
+            margin-bottom: 20px;
+        }
+        .label {
+            font-weight: bold;
+            color: #444;
+        }
+        .awards {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        .award {
+            text-align: center;
+            width: 180px;
+        }
+        .award img {
+            width: 140px;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .award img:hover {
+            transform: scale(1.05);
+        }
+        .award-text {
+            font-size: 0.9em;
+            margin-top: 6px;
+        }
+        .story-block {
+            background: #fff8f0;
+            padding: 12px 16px;
+            border-left: 5px solid #b22222;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        .orders {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: flex-start;
+        }
+        .order-link {
+            display: block;
+            width: 220px;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .order-link img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .order-link:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        }
+        .photo-section {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .photo-secondary {
+            width: 280px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .photo-secondary:hover {
+            transform: scale(1.02);
+        }
+
+        /* Стили для блока бабушки */
+        .grandmother-card {
+            background: #faf7f2;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-top: 20px;
+            border: 1px solid #e0d6c8;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .grandmother-icon {
+            font-size: 3em;
+            color: #b22222;
+            opacity: 0.8;
+        }
+        .grandmother-info {
+            flex: 1;
+        }
+        .grandmother-name {
+            font-size: 1.6em;
+            font-weight: bold;
+            margin: 0 0 5px 0;
+            color: #5a4a3a;
+        }
+        .grandmother-desc {
+            font-style: italic;
+            color: #444;
+            margin: 0;
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+            .orders {
+                flex-direction: column;
+                align-items: center;
+            }
+            .grandmother-card {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="veteran-card">
+        <!-- Шапка с основным фото дедушки -->
+        <div class="header">
+            <a href="https://cdn.moypolk.ru/static/resize/w600/og_images/2025/1095558.jpeg?updated=1746268955" target="_blank">
+                <img class="photo-large" src="https://cdn.moypolk.ru/static/resize/w600/og_images/2025/1095558.jpeg?updated=1746268955" alt="Ахромеев Василий Алексеевич">
+            </a>
+            <div class="info">
+                <h1 class="name">Ахромеев Василий Алексеевич</h1>
+                <div class="rank">Ст. лейтенант / ефрейтор</div>
+                <div class="years">2 апреля 1924 — 12 сентября 2019</div>
+            </div>
+        </div>
+
+        <!-- Дополнительное фото (в возрасте) -->
+        <div class="section">
+            <h2>Фотография</h2>
+            <div class="photo-section">
+                <a href="roadheroes_535_378_5353780fa503e5ffbef3c0f9d6639c3b_crop.jpg" target="_blank">
+                    <img class="photo-secondary" src="png/roadheroes_535_378_5353780fa503e5ffbef3c0f9d6639c3b_crop.jpg" alt="Ахромеев В.А. в возрасте">
+                </a>
+            </div>
+        </div>
+
+        <!-- История солдата -->
+        <div class="section">
+            <h2>История солдата</h2>
+            <p><strong>Награждён двумя медалями «За отвагу».</strong></p>
+            <div class="story-block">
+                Из наградного листа (архив ЦАМО):<br>
+                «Наводчик ружья роты противотанковых ружей ефрейтор Ахрамеев Василий Алексеевич в бою за город Венгров Варшавской губернии 9 августа 1944 года метким выстрелом из ружья уничтожил пулемёт противника, чем обеспечил продвижение вперёд стрелковых подразделений. 10 августа 1944 года из винтовки убил двух немцев.»
+            </div>
+            <p>После войны проживал в посёлке АМО Волгоградской области.</p>
+        </div>
+
+        <!-- Боевой путь -->
+        <div class="section">
+            <h2>Боевой путь</h2>
+            <div class="detail-grid">
+                <div class="label">Дата и место призыва</div>
+                <div>14 августа 1942, Киквидзенский РВК, Сталинградская область</div>
+                <div class="label">Воинская часть</div>
+                <div>371 стрелковый полк 130 стрелковой дивизии (III формирования)</div>
+                <div class="label">Боевое подразделение</div>
+                <div>Рота противотанковых ружей</div>
+                <div class="label">Завершение боевого пути</div>
+                <div>Венгрия (район Варшавской губернии, 1944)</div>
+            </div>
+        </div>
+
+        <!-- Приказы (сканы) -->
+        <div class="section">
+            <h2>Приказы</h2>
+            <div class="orders">
+                <a class="order-link" href="VS_266_033-0690155-5611+011-5608_00000119.jpg" target="_blank">
+                    <img src="png/VS_266_033-0690155-5611+011-5608_00000119.jpg" alt="Приказ стр. 1">
+                </a>
+                <a class="order-link" href="VS_266_033-0690155-5611+011-5608_00000120.jpg" target="_blank">
+                    <img src="png/VS_266_033-0690155-5611+011-5608_00000120.jpg" alt="Приказ стр. 2">
+                </a>
+                <a class="order-link" href="VS_266_033-0690155-5611+011-5608_00000121.jpg" target="_blank">
+                    <img src="png/VS_266_033-0690155-5611+011-5608_00000121.jpg" alt="Приказ стр. 3">
+                </a>
+                <a class="order-link" href="VS_266_033-0690155-5611+011-5608_00000122.jpg" target="_blank">
+                    <img src="png/VS_266_033-0690155-5611+011-5608_00000122.jpg" alt="Приказ стр. 4">
+                </a>
+            </div>
+        </div>
+
+        <!-- Награды -->
+        <div class="section">
+            <h2>Награды</h2>
+            <div class="awards">
+                <div class="award">
+                    <a href="https://cdn.moypolk.ru/assets/images/templates/award-default.jpg" target="_blank">
+                        <img src="https://cdn.moypolk.ru/assets/images/templates/award-default.jpg" alt="Медаль «За отвагу»">
+                    </a>
+                    <div class="award-text"><strong>Медаль «За отвагу»</strong></div>
+                    <div class="award-text">Приказ от 18.08.1944<br>Уничтожение пулемёта и двух солдат противника</div>
+                </div>
+                <div class="award">
+                    <a href="Medal_Za_Otvagu.png" target="_blank">
+                        <img src="png/Medal_Za_Otvagu.png" alt="Медаль «За отвагу» (вторая)">
+                    </a>
+                    <div class="award-text"><strong>Медаль «За отвагу» (2)</strong></div>
+                    <div class="award-text">Подтверждена документами ЦАМО (шкаф 6, ящик 3)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Документы и источники -->
+        <div class="section">
+            <h2>Документы и источники</h2>
+            <ul>
+                <li>Страница на «Бессмертном полку» (moypolk.ru)</li>
+                <li>Портал «Память народа» (pamyat-naroda.ru) — записи из 4 документов:
+                    <ul>
+                        <li>Наградной лист и приказ о награждении медалью «За отвагу»</li>
+                        <li>Картотека награждений</li>
+                        <li>Проект «Дорога памяти»</li>
+                        <li>Дополнительные донесения</li>
+                    </ul>
+                </li>
+                <li>Дата выбытия (смерти) по данным «Память народа»: 12.09.2019</li>
+            </ul>
+            <p><em>В разных документах встречается написание фамилии: Ахрамеев / Ахромеев.</em></p>
+        </div>
+
+        <!-- Личные данные -->
+        <div class="section">
+            <h2>Личные данные</h2>
+            <div class="detail-grid">
+                <div class="label">Место рождения</div>
+                <div>Хутор Калачи, Киквидзенский район, Сталинградская (Волгоградская) область</div>
+                <div class="label">Воинское звание</div>
+                <div>Ефрейтор (на момент награждения), позднее — старший лейтенант</div>
+                <div class="label">Годы службы</div>
+                <div>1942–1945</div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="veteran-card">
+        <div class="section" style="border-top: none;">
+            <h2>Труженица тыла</h2>
+            <div class="grandmother-card">
+                <div class="grandmother-icon"></div>
+                <div class="grandmother-info">
+                    <div class="grandmother-name">Ахромеева (Хрипункова) Мария Николаевна</div>
+                    <p class="grandmother-desc">
+                        В Великую Отечественную войну работала поваром и почтальоном. Выращивала хлеб для фронта. 
+                        Своим трудом помогала приближать Победу.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
